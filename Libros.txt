@@ -1,0 +1,298 @@
+mysql> create database practica20;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use practica20;
+Database changed
+mysql> create table libros(
+    -> codigo int unsigned auto_increment,
+    -> titulo varchar(40),
+    -> autor varchar(30),
+    -> editorial varchar(15),
+    -> precio decimal (5,2) unsigned,
+    -> primary key (codigo));
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> insert into libros(titulo.autor,editorial,precio)
+    -> values ('El aleph','Borges','Planeta',15.50);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('El aleph','Borges','Planeta',15.50);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Martin Fierro','Jose Hernandez','Emece',22.90);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Martin Fierro','Jose Hernandez','Planeta',39);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Aprenda PHP','Mario Molina','Emece',19.50);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Cervantes y el quijote','Borges','Paidos',35.40);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Matematica esta ahi','Paenza','Paidos',19);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from libros;
++--------+------------------------+----------------+-----------+--------+
+| codigo | titulo                 | autor          | editorial | precio |
++--------+------------------------+----------------+-----------+--------+
+|      1 | El aleph               | Borges         | Planeta   |  15.50 |
+|      2 | Martin Fierro          | Jose Hernandez | Emece     |  22.90 |
+|      3 | Martin Fierro          | Jose Hernandez | Planeta   |  39.00 |
+|      4 | Aprenda PHP            | Mario Molina   | Emece     |  19.50 |
+|      5 | Cervantes y el quijote | Borges         | Paidos    |  35.40 |
+|      6 | Matematica esta ahi    | Paenza         | Paidos    |  19.00 |
++--------+------------------------+----------------+-----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from libros where precio >=20 and precio<=40;
++--------+------------------------+----------------+-----------+--------+
+| codigo | titulo                 | autor          | editorial | precio |
++--------+------------------------+----------------+-----------+--------+
+|      2 | Martin Fierro          | Jose Hernandez | Emece     |  22.90 |
+|      3 | Martin Fierro          | Jose Hernandez | Planeta   |  39.00 |
+|      5 | Cervantes y el quijote | Borges         | Paidos    |  35.40 |
++--------+------------------------+----------------+-----------+--------+
+3 rows in set (0.06 sec)
+
+mysql> select * from libros where autor='Borges' or autor='Paenza';
++--------+------------------------+--------+-----------+--------+
+| codigo | titulo                 | autor  | editorial | precio |
++--------+------------------------+--------+-----------+--------+
+|      1 | El aleph               | Borges | Planeta   |  15.50 |
+|      5 | Cervantes y el quijote | Borges | Paidos    |  35.40 |
+|      6 | Matematica esta ahi    | Paenza | Paidos    |  19.00 |
++--------+------------------------+--------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from libros where autor <> 'Borges' and autor <> 'Paenza';
++--------+---------------+----------------+-----------+--------+
+| codigo | titulo        | autor          | editorial | precio |
++--------+---------------+----------------+-----------+--------+
+|      2 | Martin Fierro | Jose Hernandez | Emece     |  22.90 |
+|      3 | Martin Fierro | Jose Hernandez | Planeta   |  39.00 |
+|      4 | Aprenda PHP   | Mario Molina   | Emece     |  19.50 |
++--------+---------------+----------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+
+//PRACTICA 21
+
+
+mysql> create database practica21;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use practica21;
+Database changed
+              
+mysql> create table libros(
+    -> codigo int unsigned auto_increment,
+    -> titulo varchar(40),
+    -> autor varchar(30),
+    -> editorial varchar(15),
+    -> precio decimal (5,2) unsigned,
+    -> primary key (codigo));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> insert into libros(titulo.autor,editorial,precio)
+    -> values ('El aleph','Borges','Planeta',15.50);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('El aleph','Borges','Planeta',15.50);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Martin Fierro','Jose Hernandez','Emece',22.90);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Antologia poetica','J.L Borges','Planeta',39);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Aprenda PHP','Mario Molina','Emece',19.50);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Cervantes y el quijote','Bioy Casare- J.L. Borges','Paidos',35.40);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Manual de PHP','J.C Paez','Paidos',19);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Harry Potter y la  piedra filosofal','J.K. Rowling','Paidos',45.00);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Harry Potter y la camara secreta','J.K. Rowling','Paidos',46.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into libros(titulo,autor,editorial,precio)
+    -> values ('Alicia en el pais de las maravillas','Lewis Carroll','Paidos',36.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from libros;
++--------+-------------------------------------+--------------------------+-----------+--------+
+| codigo | titulo                              | autor                    | editorial | precio |
++--------+-------------------------------------+--------------------------+-----------+--------+
+|      1 | El aleph                            | Borges                   | Planeta   |  15.50 |
+|      2 | Martin Fierro                       | Jose Hernandez           | Emece     |  22.90 |
+|      3 | Antologia poetica                   | J.L Borges               | Planeta   |  39.00 |
+|      4 | Aprenda PHP                         | Mario Molina             | Emece     |  19.50 |
+|      5 | Cervantes y el quijote              | Bioy Casare- J.L. Borges | Paidos    |  35.40 |
+|      6 | Manual de PHP                       | J.C Paez                 | Paidos    |  19.00 |
+|      7 | Harry Potter y la  piedra filosofal | J.K. Rowling             | Paidos    |  45.00 |
+|      8 | Harry Potter y la camara secreta    | J.K. Rowling             | Paidos    |  46.00 |
+|      9 | Alicia en el pais de las maravillas | Lewis Carroll            | Paidos    |  36.00 |
++--------+-------------------------------------+--------------------------+-----------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from libros where autor='Borges';
++--------+----------+--------+-----------+--------+
+| codigo | titulo   | autor  | editorial | precio |
++--------+----------+--------+-----------+--------+
+|      1 | El aleph | Borges | Planeta   |  15.50 |
++--------+----------+--------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from libros where autor like '%Borges%';
++--------+------------------------+--------------------------+-----------+--------+
+| codigo | titulo                 | autor                    | editorial | precio |
++--------+------------------------+--------------------------+-----------+--------+
+|      1 | El aleph               | Borges                   | Planeta   |  15.50 |
+|      3 | Antologia poetica      | J.L Borges               | Planeta   |  39.00 |
+|      5 | Cervantes y el quijote | Bioy Casare- J.L. Borges | Paidos    |  35.40 |
++--------+------------------------+--------------------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from libros where titulo like 'A%';
++--------+-------------------------------------+---------------+-----------+--------+
+| codigo | titulo                              | autor         | editorial | precio |
++--------+-------------------------------------+---------------+-----------+--------+
+|      3 | Antologia poetica                   | J.L Borges    | Planeta   |  39.00 |
+|      4 | Aprenda PHP                         | Mario Molina  | Emece     |  19.50 |
+|      9 | Alicia en el pais de las maravillas | Lewis Carroll | Paidos    |  36.00 |
++--------+-------------------------------------+---------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from libros where titulo not like 'A%';
++--------+-------------------------------------+--------------------------+-----------+--------+
+| codigo | titulo                              | autor                    | editorial | precio |
++--------+-------------------------------------+--------------------------+-----------+--------+
+|      1 | El aleph                            | Borges                   | Planeta   |  15.50 |
+|      2 | Martin Fierro                       | Jose Hernandez           | Emece     |  22.90 |
+|      5 | Cervantes y el quijote              | Bioy Casare- J.L. Borges | Paidos    |  35.40 |
+|      6 | Manual de PHP                       | J.C Paez                 | Paidos    |  19.00 |
+|      7 | Harry Potter y la  piedra filosofal | J.K. Rowling             | Paidos    |  45.00 |
+|      8 | Harry Potter y la camara secreta    | J.K. Rowling             | Paidos    |  46.00 |
++--------+-------------------------------------+--------------------------+-----------+--------+
+6 rows in set (0.03 sec)
+
+mysql> select * from libros where autor like '%Carrol_';
++--------+-------------------------------------+---------------+-----------+--------+
+| codigo | titulo                              | autor         | editorial | precio |
++--------+-------------------------------------+---------------+-----------+--------+
+|      9 | Alicia en el pais de las maravillas | Lewis Carroll | Paidos    |  36.00 |
++--------+-------------------------------------+---------------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from libros where titulo like '%Harry Potter%_';
++--------+-------------------------------------+--------------+-----------+--------+
+| codigo | titulo                              | autor        | editorial | precio |
++--------+-------------------------------------+--------------+-----------+--------+
+|      7 | Harry Potter y la  piedra filosofal | J.K. Rowling | Paidos    |  45.00 |
+|      8 | Harry Potter y la camara secreta    | J.K. Rowling | Paidos    |  46.00 |
++--------+-------------------------------------+--------------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from libros where titulo like '%PHP%_';
+Empty set (0.00 sec)
+
+mysql> select * from libros where titulo like '%PHP%';
++--------+---------------+--------------+-----------+--------+
+| codigo | titulo        | autor        | editorial | precio |
++--------+---------------+--------------+-----------+--------+
+|      4 | Aprenda PHP   | Mario Molina | Emece     |  19.50 |
+|      6 | Manual de PHP | J.C Paez     | Paidos    |  19.00 |
++--------+---------------+--------------+-----------+--------+
+2 rows in set (0.00 sec)
+
+
+//PRACTICA22
+
+mysql> create database Practica22;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use Practica22;
+Database changed
+mysql> create table libros(
+    -> codigo int unsigned auto_increment,
+    -> titulo varchar(40) not null,
+    -> autor varchar(30),
+    -> editorial varchar(15),
+    -> precio decimal(5,2) unsigned,
+    -> cantidad mediumint unsigned,
+    -> primary key(codigo));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('El aleph','Borges', 'Planeta',15,100);
+Query OK, 1 row affected (0.38 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Martin Fierro','Jose Hernandez', 'Emece',22.20,200);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Antologia Poetica','J.L. Borges', 'Planeta',40,150);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Aprenda PHP','Mario Molina', 'Emece',18.20,200);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Cervantes y el quijote','Bioy Casare- J.L. Borges', 'Paidos',36.40,100);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Manual de PHP','J.C. Paez', 'Paidos',30.80,120);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Harry Poter y la piedra filosofal','J.K. Rowling', 'Paidos',45.00,50);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Harry Poter y la camara secreta','J.K. Rowling', 'Paidos',46.00,100);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into libros(titulo, autor, editorial, precio,cantidad)
+    -> values ('Alicia en elpais de las maravillas','Lewis Carroll', 'Paidos',null,200);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select *from libros
+    -> ;
++--------+------------------------------------+--------------------------+-----------+--------+----------+
+| codigo | titulo                             | autor                    | editorial | precio | cantidad |
++--------+------------------------------------+--------------------------+-----------+--------+----------+
+|      1 | El aleph                           | Borges                   | Planeta   |  15.00 |      100 |
+|      2 | Martin Fierro                      | Jose Hernandez           | Emece     |  22.20 |      200 |
+|      3 | Antologia Poetica                  | J.L. Borges              | Planeta   |  40.00 |      150 |
+|      4 | Aprenda PHP                        | Mario Molina             | Emece     |  18.20 |      200 |
+|      5 | Cervantes y el quijote             | Bioy Casare- J.L. Borges | Paidos    |  36.40 |      100 |
+|      6 | Manual de PHP                      | J.C. Paez                | Paidos    |  30.80 |      120 |
+|      7 | Harry Poter y la piedra filosofal  | J.K. Rowling             | Paidos    |  45.00 |       50 |
+|      8 | Harry Poter y la camara secreta    | J.K. Rowling             | Paidos    |  46.00 |      100 |
+|      9 | Alicia en elpais de las maravillas | Lewis Carroll            | Paidos    |   NULL |      200 |
++--------+------------------------------------+--------------------------+-----------+--------+----------+
+9 rows in set (0.00 sec)
